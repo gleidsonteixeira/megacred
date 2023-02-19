@@ -7,40 +7,40 @@ router.get("/", async (req, res, next) => {
 	try {
 		res.send(await controller.all());
 	} catch (err) {
-		console.error("Erro ao buscar dados", err.message);
-		next(err);
+		return { error: err.message };
 	}
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res) => {
 	try {
 		res.send(await controller.find(req.params.id));
 	} catch (err) {
-		console.error("Erro ao buscar dados", err.message);
-		next(err);
+		return { error: err.message };
 	}
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res) => {
 	try {
 		res.send(await controller.store(req.body));
 	} catch (err) {
-		console.error("Erro ao salvar dados", err.message);
-		next(err);
+		return { error: err.message };
 	}
 });
 
-router.post("/:id/edit", async (req, res, next) => {
+router.post("/:id", async (req, res) => {
 	try {
 		res.send(await controller.update(req.body, req.params.id));
 	} catch (err) {
-		console.error("Erro ao salvar dados", err.message);
-		next(err);
+		return { error: err.message };
 	}
 });
 
-router.delete("/:id", (req, res) => {
-	res.send(controller.destroy(req.params.id));
+router.delete("/:id", async (req, res) => {
+	try {
+		res.send(await controller.destroy(req.params.id));
+	} catch (err) {
+		return { error: err.message };
+	}
 });
 
 module.exports = router;

@@ -17,7 +17,7 @@ async function update(data, id) {
 }
 
 async function destroy(id) {
-	return "user deleted";
+	return await service.destroy(id);
 }
 
 module.exports = {

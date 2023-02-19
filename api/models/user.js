@@ -15,6 +15,7 @@ const User = connection.define('users', {
     email: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { isEmail: true },
         unique: true
     },
     password: {
@@ -41,9 +42,8 @@ const User = connection.define('users', {
     try {
         // const resultado = await connection.sync({force:true});
         const resultado = await connection.sync();
-        console.log("Sincronizando banco: ", resultado);
-    } catch (error) {
-        console.log("Erro:", error.message);
+    } catch (err) {
+        return { error: err.message };
     }
 })()
 

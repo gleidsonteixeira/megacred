@@ -19,7 +19,7 @@ async function insert(data)
 {
     let checkEmail = await User.findAll({where: {email: data.email}});
     if(checkEmail.length > 0){
-        return [{message: "Este email já está em uso"}];
+        return { error: "Este email já está em uso" };
     }
 
     let result = await User.create({
@@ -36,20 +36,27 @@ async function insert(data)
 async function update(data, id)
 {
     let user = await User.findByPk(id);
-    console.log(user.name)
-    // user.name = data.name ? data.name : user.name;
-    // user.email = data.email ? data.email : user.email;
-    // user.password = data.password ? data.password : user.password;
-    // user.phone = data.phone ? data.phone : user.phone;
-    // user.level = data.level ? data.level : user.level;
-    // user.status = data.status ? data.status : user.status;
+    user.name = data.name ? data.name : user.name;
+    user.email = data.email ? data.email : user.email;
+    user.password = data.password ? data.password : user.password;
+    user.phone = data.phone ? data.phone : user.phone;
+    user.level = data.level ? data.level : user.level;
+    user.status = data.status ? data.status : user.status;
+    
+    try {
+        let result = await user.save();
+        return result;
+        
+    } catch (err) {
+        return  { error: err.errors[0].message }; 
+    }
 
-    // let result = await user.save();
-    // return result;
 }
 
 async function destroy(id)
-{}
+{
+    User.destroy({where: {id: id}});
+}
 
 module.exports = {
     select,
