@@ -19,5 +19,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta: ${port}`);
+  console.log(`Servidor: http://localhost:${port}`);
 });

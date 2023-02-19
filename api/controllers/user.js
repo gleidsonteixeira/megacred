@@ -1,38 +1,29 @@
-function index()
-{
-  return "index";
+const service = require("../services/user");
+
+async function all() {
+	return await service.select();
 }
 
-function all()
-{
-  return "all";
+async function find(id) {
+	return await service.selectOnly(id);
 }
 
-function only(id)
-{
-  return "only: "+ id;
+async function store(data) {
+	return await service.insert(data);
 }
 
-function store(data)
-{
-  return "user created: "+ JSON.stringify(data);
+async function update(data, id) {
+	return await service.update(data, id);
 }
 
-function update(data, id)
-{
-  return "user updated: "+ JSON.stringify(data);
-}
-
-function destroy(id)
-{
-  return "user deleted";
+async function destroy(id) {
+	return "user deleted";
 }
 
 module.exports = {
-  index,
-  all,
-  only,
-  store,
-  update,
-  destroy
+	all,
+	find,
+	store,
+	update,
+	destroy
 }
