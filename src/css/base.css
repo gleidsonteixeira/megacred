@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: #D0D8DD;
+}
+.suave, .suave:hover{
+    transition-duration: .2s;
+}
+.box{
+    background-color: #FFFFFF;
+    padding: 16px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px -5px #00000025;
+}
+.click{
+    cursor: pointer;
+}
+.paper{
+    padding: 16px;
+}
+.btn{
+    height: 46px;
+    line-height: 46px;
+    font-size: 12px;
+    font-weight: initial;
+    display: block;
+    padding: 0 16px;
+    background-color: #005dba;
+    border-radius: 5px;
+    color: #FFFFFF;
+    box-shadow: 0px 5px 15px -5px #005dba75;
+    cursor: pointer;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+.btn:hover{
+    background-color: #003f7e;
+}
+.waves::after{
+    content: "";
+    width: 100vmax;
+    height: 100vmax;
+    background-color: #FFFFFF50;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    transition: all 1s;
+    opacity: 0;
+}
+.waves:active::after{
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transition: 0s;
+}
+.actions{
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.actions .btn{
+    width: 36px;
+    height: 36px;
+    border-radius: 30px;
+    padding: 0;
+}
+.actions .btn i{
+    width: 36px;
+    line-height: 36px;
+    font-size: 20px;
+    text-align: center;
+}
+.offcanvas{
+    width: 100%;
+    height: 100vh;
+    background-color: #00000075;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+.offcanvas.active{
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .2s;
+}
+.offcanvas .content{
+    width: 350px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    transition-delay: .3s;
+    transition-duration: .3s;
+}
+.offcanvas.active .content{
+    right: 0;
+}
+.offcanvas .content h2 span{
+    width: 36px;
+    height: 36px;
+    background-color: #005dba;
+    color: #FFFFFF;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.offcanvas .content h2 span:hover{
+    background-color: #003f7e;
+}
+.offcanvas .content h2 span i{
+    width: 100%;
+    text-align: center;
+    line-height: 36px;
+    font-size: 20px;
+}
+.offcanvas .content form{
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    padding: 16px;
+}
+.offcanvas.active .content form.active{
+    opacity: 1;
+    visibility: visible;
+}
+.offcanvas .content form .input-form{
+    width: 100%;
+    margin-bottom: 16px;
+    position: relative;
+}
+.offcanvas .content form .input-form label{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 0 10px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 16px;
+    transform: translateY(-50%);
+    text-transform: uppercase;
+
+}
+.offcanvas .content form .input-form input,
+.offcanvas .content form .input-form select{
+    width: 100%;
+    height: 46px;
+    padding: 10px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    outline: none;
+}
+.offcanvas .content form .input-form input:focus,
+.offcanvas .content form .input-form select:focus{
+    border-color: #005dba;
+}
+.offcanvas .content form a{
+    font-size: 14px;
+    color: #005dba;
+    font-weight: bold;
+}
+.offcanvas .content form button{
+    width: 100%;
+    margin-top: 16px;
+}
+
+#content{
+    width: 100%;
+}
+#content h2{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
