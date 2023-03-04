@@ -96,6 +96,10 @@ export default function Header(){
                             <ListItemIcon><AccountBalanceWallet /></ListItemIcon>
                             <ListItemText primary="Centro de custo" />
                         </ListItemButton>
+                        <ListItemButton href='/clients'>
+                            <ListItemIcon><AccountCircle /></ListItemIcon>
+                            <ListItemText primary="Clientes" />
+                        </ListItemButton>
                     </List>
                     <Divider />
                 </Box>
