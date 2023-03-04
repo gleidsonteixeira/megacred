@@ -6,8 +6,23 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+::-webkit-scrollbar{width: 18px;}
+::-webkit-scrollbar-thumb{
+    border: 6px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #005dba;
+}
 body{
     background-color: #D0D8DD;
+}
+main{
+    width: 100%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
 }
 .suave, .suave:hover{
     transition-duration: .2s;

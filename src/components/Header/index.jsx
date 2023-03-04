@@ -1,7 +1,7 @@
 import React from 'react';
-import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography, Drawer, ListItem, ListItemIcon, List, ListItemText, ListItemButton, Divider, Collapse, ListSubheader } from '@mui/material';
+import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography, Drawer, ListItem, ListItemIcon, List, ListItemText, ListItemButton, Divider, Collapse, ListSubheader, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AccountCircle, AddCircle, Create, Dashboard, Inbox, Sell, StarBorder, SubdirectoryArrowLeft, SubdirectoryArrowRight } from '@mui/icons-material';
+import { AccountBalance, AccountBalanceWallet, AccountCircle, AddCircle, Create, Dashboard, Inbox, Sell, StarBorder, SubdirectoryArrowLeft, SubdirectoryArrowRight, Wallet } from '@mui/icons-material';
 
 import './index.css';
 import logo from './logo_megacred.png';
@@ -33,6 +33,7 @@ export default function Header(){
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {/* <Button color='transparent' href="/dashboard">Megacred</Button> */}
                         Megacred
                     </Typography>
                     <IconButton
@@ -83,25 +84,19 @@ export default function Header(){
                             </ListItemIcon>
                             <ListItemText>Dashboard</ListItemText>
                         </ListItemButton>
-                        {/* <ListItemButton onClick={() => setCadastros(!cadastros)}>
-                            <ListItemIcon><AddCircle /></ListItemIcon>
-                            <ListItemText primary="Cadastros" />
-                        </ListItemButton> */}
                         <ListSubheader>Cadastros</ListSubheader>
-                        <Collapse in={cadastros} timeout="auto" unmountOnExit>
-                            <List component="div">
-                                <ListItemButton href='/users'>
-                                    <ListItemIcon><AccountCircle /></ListItemIcon>
-                                    <ListItemText primary="Usuários" />
-                                </ListItemButton>
-                                <ListItemButton href='/categories'>
-                                    <ListItemIcon><Sell /></ListItemIcon>
-                                    <ListItemText primary="Categorias de Pagamento" />
-                                </ListItemButton>
-                            </List>
-                        </Collapse>
-                        <ListItem>
-                        </ListItem>
+                        <ListItemButton href='/users'>
+                            <ListItemIcon><AccountCircle /></ListItemIcon>
+                            <ListItemText primary="Usuários" />
+                        </ListItemButton>
+                        <ListItemButton href='/category-payments'>
+                            <ListItemIcon><Sell /></ListItemIcon>
+                            <ListItemText primary="Categorias de Pagamento" />
+                        </ListItemButton>
+                        <ListItemButton href='/cost-center'>
+                            <ListItemIcon><AccountBalanceWallet /></ListItemIcon>
+                            <ListItemText primary="Centro de custo" />
+                        </ListItemButton>
                     </List>
                     <Divider />
                 </Box>

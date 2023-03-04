@@ -5,7 +5,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from '../pages/Login';
 import Home from "../pages/Home";
 import NotFound from '../pages/NotFound';
-import CadUser from '../pages/Caduser';
+import PageUser from '../pages/PageUser';
+import PageCategoryPayments from '../pages/PageCategoryPayments';
 
 export default function Ways()
 {
@@ -15,7 +16,8 @@ export default function Ways()
                 <Routes>
                     <Route exact path='/' element={<Login />} />
                     <Route exact path="/dashboard" element={<Home />} />
-                    <Route exact path="/users" element={<CadUser />} />
+                    <Route exact path="/users" element={<PageUser />} />
+                    <Route exact path="/category-payments" element={<PageCategoryPayments />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
