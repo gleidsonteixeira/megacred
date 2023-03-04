@@ -10,7 +10,7 @@ import { Stack } from '@mui/system';
 import { Close } from '@mui/icons-material';
 import { green, red } from '@mui/material/colors';
 
-export default function PageCategoryPayments()
+export default function PageCostCenter()
 {
     //List users
     const [list, setList] = React.useState([]);
@@ -23,22 +23,30 @@ export default function PageCategoryPayments()
     //Form States
     const [visibleCreate, setVisibleCreate] = React.useState(false);
     const [visibleEdit, setVisibleEdit] = React.useState(false);
-    const [category_name, setName] = React.useState('');
-    const [e_category_id, setEID] = React.useState('');
-    const [e_category_name, setEName] = React.useState('');
-    const [e_category_status, setEStatus] = React.useState('');
+    const [costcenter_name, setName] = React.useState('');
+    const [costcenter_description, setDescription] = React.useState('');
+    const [e_costcenter_id, setEID] = React.useState('');
+    const [e_costcenter_name, setEName] = React.useState('');
+    const [e_costcenter_description, setEDescription] = React.useState('');
+    const [e_costcenter_status, setEStatus] = React.useState('');
 
     const columns = [
         {
             name: 'id',
             width: '70px',
             center: true,
-            selector: row => row.categoria_id,
+            selector: row => row.centro_id,
         },
         {
-            name: 'Categoria',
+            name: 'Centro',
             sortable: true,
-            selector: row => row.categoria_nome,
+            selector: row => row.centro_nome,
+            
+        },
+        {
+            name: 'Descrição',
+            sortable: true,
+            selector: row => row.centro_descricao,
             
         },
         {
@@ -50,7 +58,7 @@ export default function PageCategoryPayments()
         {
             name: 'Status',
             maxWidth: '80px',
-            selector: row => (row.categoria_status === 1) ? "Ativo" : "Inativo",
+            selector: row => (row.centro_status === 1) ? "Ativo" : "Inativo",
             center: true,
         },
         {
@@ -63,7 +71,7 @@ export default function PageCategoryPayments()
                     <div className='suave btn waves' title="Editar" onClick={() => {setVisibleEdit(true); fillEdit(row);}} form='edit'>
                         <i className='material-icons' translate='no'>create</i>
                     </div>
-                    <div className='suave btn waves' title="Excluir" onClick={() => setDialog({status: true, id: row.categoria_id})}>
+                    <div className='suave btn waves' title="Excluir" onClick={() => setDialog({status: true, id: row.centro_id})}>
                         <i className='material-icons' translate='no'>delete</i>
                     </div>
                 </div>
@@ -80,7 +88,7 @@ export default function PageCategoryPayments()
     
     async function getData()
     {
-        let response = await API.get("categoria-pagamentos");
+        let response = await API.get("centro-custo");
         if(response.data.length >= 0){
             setList(response.data);
             setPending(false);
@@ -94,9 +102,10 @@ export default function PageCategoryPayments()
         e.preventDefault();
         try {
             let data = {
-                "categoria_nome": category_name,
+                "centro_nome": costcenter_name,
+                "centro_descricao": costcenter_description,
             };
-            const request = await API.post("categoria-pagamentos", data);
+            const request = await API.post("centro-custo", data);
             setVisibleCreate(false);
             if(request.data.message){
                 setAlert({status: true, type: 'warning', message: request.data.message});
@@ -115,9 +124,10 @@ export default function PageCategoryPayments()
 
     function fillEdit(data)
     {
-        setEID(data.categoria_id);
-        setEName(data.categoria_nome);
-        setEStatus(data.categoria_status);
+        setEID(data.centro_id);
+        setEName(data.centro_nome);
+        setEDescription(data.centro_descricao);
+        setEStatus(data.centro_status);
     }
 
     async function edit(e)
@@ -125,10 +135,11 @@ export default function PageCategoryPayments()
         e.preventDefault();
         try {
             let data = {
-                "categoria_nome": e_category_name,
-                "categoria_status": Number(e_category_status)
+                "centro_nome": e_costcenter_name,
+                "centro_descricao": e_costcenter_description,
+                "centro_status": Number(e_costcenter_status)
             };
-            const request = await API.post("categoria-pagamentos/"+e_category_id, data);
+            const request = await API.post("centro-custo/"+e_costcenter_id, data);
             setVisibleEdit(false);
             if(request.data.message){
                 setAlert({status: true, type: 'warning', message: request.data.message});
@@ -147,7 +158,7 @@ export default function PageCategoryPayments()
     async function destroy(id)
     {
         try {
-            const request = await API.delete("categoria-pagamentos/" + id);
+            const request = await API.delete("centro-custo/" + id);
             if(request.data.message){
                 setAlert({status: true, type: 'warning', message: request.data.message});
                 return;
@@ -169,8 +180,8 @@ export default function PageCategoryPayments()
             <main>
                 <Paper sx={{ m: '16px'}} elevation={0} className="paper">
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ pb: 2}}>
-                        <Typography variant='h5'>Cadastro de categorias de pagamento</Typography>
-                        <Button variant='contained' onClick={() => setVisibleCreate(true)}>Nova categoria</Button>
+                        <Typography variant='h5'>Cadastro de centro de custo</Typography>
+                        <Button variant='contained' onClick={() => setVisibleCreate(true)}>Novo centro</Button>
                     </Stack>
                     <DataTable
                         columns={columns}
@@ -228,12 +239,22 @@ export default function PageCategoryPayments()
                                 sx={{ pb: 2}} 
                                 id='name' 
                                 type={'text'} 
-                                label='Categoria'
+                                label='Nome'
                                 variant='outlined' 
                                 placeholder='Digite o nome' 
-                                value={category_name} 
+                                value={costcenter_name} 
                                 onChange={(e) => setName(e.target.value)} 
                                 autoFocus fullWidth required />
+                            <TextField 
+                                sx={{ pb: 2}} 
+                                id='description' 
+                                type={'text'} 
+                                label='Descrição'
+                                variant='outlined' 
+                                placeholder='Digite a descrição' 
+                                value={costcenter_description} 
+                                onChange={(e) => setDescription(e.target.value)} 
+                                fullWidth required />
                             <Button sx={{ width: '100%'}} variant='contained' size='large' type='submit'>Salvar alterações</Button>
                         </form>
                     </Box>
@@ -260,15 +281,25 @@ export default function PageCategoryPayments()
                                 label='Nome' 
                                 variant='outlined' 
                                 placeholder='Digite o nome'
-                                value={e_category_name} 
+                                value={e_costcenter_name} 
                                 onChange={(e) => setEName(e.target.value)} 
                                 autoFocus fullWidth required />
+                            <TextField 
+                                sx={{ pb: 2}} 
+                                id='e_description' 
+                                type={'text'} 
+                                label='Descrição' 
+                                variant='outlined' 
+                                placeholder='Digite a descrição'
+                                value={e_costcenter_description} 
+                                onChange={(e) => setEDescription(e.target.value)} 
+                                fullWidth required />
                             <FormControl sx={{ pb: 2}} fullWidth>
                                 <InputLabel id="status-label">Status</InputLabel>
                                 <Select
                                     labelId='status-label'
                                     id='e_status'
-                                    value={e_category_status}
+                                    value={e_costcenter_status}
                                     label='Status'
                                     onChange={(e) => setEStatus(e.target.value)}
                                     required>

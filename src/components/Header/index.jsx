@@ -33,7 +33,6 @@ export default function Header(){
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        {/* <Button color='transparent' href="/dashboard">Megacred</Button> */}
                         Megacred
                     </Typography>
                     <IconButton
