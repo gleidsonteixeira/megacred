@@ -10,7 +10,7 @@ import { Stack } from '@mui/system';
 import { Close } from '@mui/icons-material';
 import { green, red } from '@mui/material/colors';
 
-export default function PageCategoryPayments()
+export default function PageCategoryClient()
 {
     //List users
     const [list, setList] = React.useState([]);
@@ -29,14 +29,14 @@ export default function PageCategoryPayments()
     const [e_category_status, setEStatus] = React.useState('');
 
     const columns = [
+        // {
+        //     name: 'id',
+        //     width: '70px',
+        //     center: true,
+        //     selector: row => row.categoria_id,
+        // },
         {
-            name: 'id',
-            width: '70px',
-            center: true,
-            selector: row => row.categoria_id,
-        },
-        {
-            name: 'Categoria',
+            name: 'Nome',
             sortable: true,
             selector: row => row.categoria_nome,
             
@@ -169,7 +169,7 @@ export default function PageCategoryPayments()
             <main>
                 <Paper sx={{ m: '16px'}} elevation={0} className="paper">
                     <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ pb: 2}}>
-                        <Typography variant='h5'>Cadastro de categorias de pagamento</Typography>
+                        <Typography variant='h5'>Categorias de pagamento</Typography>
                         <Button variant='contained' onClick={() => setVisibleCreate(true)}>Nova categoria</Button>
                     </Stack>
                     <DataTable

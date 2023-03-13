@@ -32,13 +32,13 @@ export default function PageUser()
     const [e_status, setStatus] = React.useState('');
 
     const columns = [
-        {
-            name: 'id',
-            width: '70px',
-            center: true,
-            // sortable: true,
-            selector: row => row.id,
-        },
+        // {
+        //     name: 'id',
+        //     width: '70px',
+        //     center: true,
+        //     // sortable: true,
+        //     selector: row => row.id,
+        // },
         {
             name: 'Nome',
             sortable: true,
@@ -197,7 +197,7 @@ export default function PageUser()
             <Header />
             <Paper sx={{ m: '16px', mt: 8}} elevation={0} className="paper">
                 <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ pb: 2}}>
-                    <Typography variant='h5'>Cadastro de usuários</Typography>
+                    <Typography variant='h5'>Usuários</Typography>
                     <Button variant='contained' onClick={() => setVisibleCreate(true)}>Novo usuário</Button>
                 </Stack>
                 <DataTable

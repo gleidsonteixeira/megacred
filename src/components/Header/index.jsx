@@ -88,17 +88,21 @@ export default function Header(){
                             <ListItemIcon><AccountCircle /></ListItemIcon>
                             <ListItemText primary="Usuários" />
                         </ListItemButton>
+                        <ListItemButton href='/clients'>
+                            <ListItemIcon><AccountCircle /></ListItemIcon>
+                            <ListItemText primary="Clientes" />
+                        </ListItemButton>
+                        <ListItemButton href='/category-clients'>
+                            <ListItemIcon><Sell /></ListItemIcon>
+                            <ListItemText primary="Categorias de Cliente" />
+                        </ListItemButton>
                         <ListItemButton href='/category-payments'>
                             <ListItemIcon><Sell /></ListItemIcon>
                             <ListItemText primary="Categorias de Pagamento" />
                         </ListItemButton>
                         <ListItemButton href='/cost-center'>
                             <ListItemIcon><AccountBalanceWallet /></ListItemIcon>
-                            <ListItemText primary="Centro de custo" />
-                        </ListItemButton>
-                        <ListItemButton href='/clients'>
-                            <ListItemIcon><AccountCircle /></ListItemIcon>
-                            <ListItemText primary="Clientes" />
+                            <ListItemText primary="Centros de custo" />
                         </ListItemButton>
                     </List>
                     <Divider />
